@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <p>
+        百钱买百鸡是中国古代经典枚举题目，题目要求为：公鸡价格5元/只，母鸡价格3元/只，小鸡1元能够买三只，现在有100块钱，需要买100只鸡，求出所有的组合。
+    </p>
+</div>
+<script>
+    //5X * 3y * z/3 = 100
+    //x+y+z =100
+    var total_price = 100;//拥有的钱
+    var cock = 5,hen = 3,chick = 1/3;
+    var demand = 100;//需要买的鸡的总数
+    for(let i = 0;i<=total_price;i++){
+        for(let j = 0;j <= total_price-i;j++){
+            for(let k = 0;k <= total_price-i-j;k++){
+                if(i+j+k===demand && i*cock+j*hen+k*chick===total_price){
+                    document.write(`公鸡为：${i},母鸡为：${j},小鸡为：${k}`);
+                    document.write("<br>")
+                }
+            }
+        }
+    }
+    document.write("-----------------方法二--------------------<br>")//方法二
+    for(let i = 0;i<=total_price;i++){
+        for(let j = 0;j <= total_price-i;j++){
+           var k = total_price-i-j;
+           if(i+j+k===demand && i*cock+j*hen+k*chick===total_price){
+               document.write(`公鸡为：${i},母鸡为：${j},小鸡为：${k}`);
+               document.write("<br>")
+                }
+            }
+        }
+</script>
+</body>
+</html>
