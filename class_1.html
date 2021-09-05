@@ -100,10 +100,58 @@
                 }
             }
         }
+    })()
+</script>
+<div>
+    <P>
+        使用*符号构成中空菱形并对菱形进行输出显示。
+    </P>
+</div>
+<script>
+    (function () {
+        var rhombus_row = 7;
+        var rhombus_row_frame = rhombus_row + 2;
 
+        for(var row = 1;row<=rhombus_row_frame;row++){
+            if (row ===1 || row === rhombus_row_frame){
+                for(let j = 1;j<=rhombus_row_frame;j++){
+                    document.write("<strong style='color: blue'>*</strong>");
+                }
+                // document.write("<br>");
+            }
+            else {
+                document.write("<strong style='color: blue'>*</strong>");
+                let total_row=rhombus_row;//行
+                let mid_row=Math.floor(total_row/2);//中间行标号,实际是若总行数为奇数时中间行应为mid_row+1
+                let judgement = total_row % 2;//是否整除
+                if(judgement===1){
+                    mid_row +=1;
+                    for(let i = 1;i<=total_row;i++){
+                        if(i<=mid_row){//总行数为奇数时 必须用<=
+                            for(let k = 1;k<=mid_row-i;k++){
+                                document.write("<strong style='color: blue'>&nbsp;</strong>");
+                            }
+                            var tap = (i-1)*2+1;
+                            for(let j = 1 ;j<=tap;j++){
+                                document.write("<strong style='color: blue'>*</strong>");
+                            }
+                            document.write("<br>");
+                        }
 
+                        if(i>mid_row){//下半段
+                            var tap_row = i - mid_row;//当前行i 减去中间行号，形成新的等差数列1,2,3
+                            for (var k = 0;k<tap_row;k++)document.write("<strong style='color: blue'>&nbsp;</strong>");
+                            for(let j = 1;j<=total_row-(tap_row*2);j++){
+                                document.write("<strong style='color: blue'>*</strong>");
 
-
+                            }
+                            document.write("<br>");
+                        }
+                    }
+                }
+            }
+            document.write("<br>");
+        }
 
     })()
 </script>
