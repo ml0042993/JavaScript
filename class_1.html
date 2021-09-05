@@ -47,28 +47,64 @@
 </div>
 <script>
     (function () {
-        var total_row=6;//行
-        var mid_row=Math.floor(total_row/2);//中间行标号
-        document.write(`${Math.floor(total_row/2)}<br>`);
-        for(let i = 1;i<=total_row;i++){
-            if(i<=mid_row){
-                for(let k = 1;k<=mid_row-i;k++){
-                    document.write("<strong style='color: blue'>&nbsp;</strong>");
+        var total_row=8;//行
+        var mid_row=Math.floor(total_row/2);//中间行标号,实际是若总行数为奇数时中间行应为mid_row+1
+        var judgement = total_row % 2;//是否整除
+        document.write(`中间行数为：${Math.floor(total_row/2)}，行数余数为：${judgement}<br>`);
+        if(judgement===1){
+            mid_row +=1;
+            for(let i = 1;i<=total_row;i++){
+                if(i<=mid_row){//总行数为奇数时 必须用<=
+                    for(let k = 1;k<=mid_row-i;k++){
+                        document.write("<strong style='color: blue'>&nbsp;</strong>");
+                    }
+                    var tap = (i-1)*2+1;
+                    for(let j = 1 ;j<=tap;j++){
+                        document.write("<strong style='color: blue'>*</strong>");
+                    }
+                    document.write("<br>");
                 }
-                var tap = (i-1)*2+1;
-                for(let j = 1 ;j<=tap;j++){
-                    document.write("<strong style='color: blue'>*</strong>");
-                }
-                document.write("<br>");
-            }
 
-            if(i>mid_row){
-                for(let j = 1;j<=mid_row;j++){
-                    document.write("<strong style='color: blue'>*</strong>");
+                if(i>mid_row){//下半段
+                    var tap_row = i - mid_row;//当前行i 减去中间行号，形成新的等差数列1,2,3
+                    for (var k = 0;k<tap_row;k++)document.write("<strong style='color: blue'>&nbsp;</strong>");
+                    for(let j = 1;j<=total_row-(tap_row*2);j++){
+                        document.write("<strong style='color: blue'>*</strong>");
+
+                    }
+                    document.write("<br>");
                 }
-                document.write("<br>");
             }
         }
+        else {
+            for(let i = 1;i<=total_row;i++){
+                if(i<=mid_row){//总行数为奇数时 必须用<=
+                    for(let k = 1;k<=mid_row-i;k++){
+                        document.write("<strong style='color: blue'>&nbsp;</strong>");
+                    }
+                    var tap = (i-1)*2+1;
+                    for(let j = 1 ;j<=tap;j++){
+                        document.write("<strong style='color: blue'>*</strong>");
+                    }
+                    document.write("<br>");
+                }
+
+                if(i>mid_row){//下半段
+                    var tap_row = i - mid_row;//当前行i 减去中间行号，形成新的等差数列1,2,3
+                    for (var k = 1;k<tap_row;k++)document.write("<strong style='color: blue'>&nbsp;</strong>");
+                    for(let j = 0;j<=total_row-(tap_row*2);j++){
+                        document.write("<strong style='color: blue'>*</strong>");
+
+                    }
+                    document.write("<br>");
+                }
+            }
+        }
+
+
+
+
+
     })()
 </script>
 </body>
